@@ -21,6 +21,10 @@ public class Category {
 
     private Instant createdAt;
 
+    public Category(){
+
+    }
+
     @DynamoDbPartitionKey
     public String getId() {
         return id;
