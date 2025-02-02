@@ -5,6 +5,7 @@ import com.example.eda.domain.category.CategoryDTO;
 import com.example.eda.domain.product.Product;
 import com.example.eda.domain.product.ProductDTO;
 import io.awspring.cloud.dynamodb.DynamoDbTemplate;
+import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.enhanced.dynamodb.Key;
@@ -18,6 +19,9 @@ public class ProductService {
 
     @Autowired
     private DynamoDbTemplate dynamoDbTemplate;
+
+    @Autowired
+    private SqsTemplate sqsTemplate;
 
     public Product create(ProductDTO dto){
         Product product = new Product();
@@ -58,6 +62,7 @@ public class ProductService {
         product.setPrice(dto.price());
 
         dynamoDbTemplate.save(product);
+        this.sendToSQS(dto.ownerId());
 
         return product;
 
@@ -94,6 +99,7 @@ public class ProductService {
         product.setPrice(dto.price());
 
         dynamoDbTemplate.save(product);
+        this.sendToSQS(dto.ownerId());
 
         return product;
     }
@@ -115,6 +121,14 @@ public class ProductService {
         }
 
         dynamoDbTemplate.delete(product);
+        this.sendToSQS(ownerId);
+    }
+
+    private void sendToSQS(String ownerId){
+
+        var SQS = "https://localhost.localstack.cloud:4566/000000000000/minha-fila";
+        sqsTemplate.send(SQS, ownerId);
+
     }
 
 }
