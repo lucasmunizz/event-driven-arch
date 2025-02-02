@@ -4,6 +4,7 @@ package com.example.eda.domain.category;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -25,7 +26,7 @@ public class Category {
 
     }
 
-    @DynamoDbPartitionKey
+    @DynamoDbSortKey
     public String getId() {
         return id;
     }
@@ -42,6 +43,7 @@ public class Category {
         this.title = title;
     }
 
+    @DynamoDbPartitionKey
     @DynamoDbAttribute("owner_id")
     public String getOwnerId() {
         return ownerId;

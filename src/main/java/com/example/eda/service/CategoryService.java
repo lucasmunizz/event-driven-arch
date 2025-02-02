@@ -36,7 +36,8 @@ public class CategoryService {
 
     public Category edit(String id, CategoryDTO dto){
         var key = Key.builder()
-                .partitionValue(id)
+                .partitionValue(dto.owner_id())
+                .sortValue(id)
                 .build();
 
         var category = dynamoDbTemplate.load(key, Category.class);
@@ -58,9 +59,10 @@ public class CategoryService {
         return dynamoDbTemplate.scanAll(Category.class).items().stream().toList();
     }
 
-    public void delete(String id){
+    public void delete(String ownerId, String id){
         var key = Key.builder()
-                .partitionValue(id)
+                .partitionValue(ownerId)
+                .sortValue(id)
                 .build();
 
         var category = dynamoDbTemplate.load(key, Category.class);

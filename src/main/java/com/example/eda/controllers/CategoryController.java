@@ -28,9 +28,9 @@ public class CategoryController {
         return ResponseEntity.ok().body(category);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id){
-        this.categoryService.delete(id);
+    @DeleteMapping("/{ownerId}/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String ownerId, @PathVariable String id){
+        this.categoryService.delete(ownerId, id);
         return ResponseEntity.noContent().build();
     }
 
