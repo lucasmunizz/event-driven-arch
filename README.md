@@ -191,4 +191,4 @@ def lambda_handler(event, context):
 
 Sinta-se à vontade para abrir issues ou enviar pull requests!
 
----
+Lembrete: Fiz esse projeto utilizando LocalStack, então, utilizei comandos AWS CLI para a criação dos recursos, mas em breve vou tentar implementar com terraform
