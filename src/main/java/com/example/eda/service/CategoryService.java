@@ -87,7 +87,6 @@ public class CategoryService {
 
         var SQS = "https://localhost.localstack.cloud:4566/000000000000/minha-fila";
         sqsTemplate.send(SQS, new MyMessage(ownerId));
-
     }
 
 
