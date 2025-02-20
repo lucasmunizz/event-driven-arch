@@ -1,4 +1,4 @@
-# Spring Boot REST API com DynamoDB, SQS e S3 no LocalStack
+# Spring Boot REST API com DynamoDB, SQS e S3 no LocalStack (AWS)
 
 Este repositório contém uma aplicação Spring Boot que expõe uma REST API para operações CRUD de Produtos e Categorias, utilizando o DynamoDB para armazenamento e o SQS para comunicação assíncrona. Uma função Lambda em Python consome as mensagens da fila, gera um arquivo JSON estruturado e o salva em um bucket S3.
 
