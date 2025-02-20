@@ -2,6 +2,9 @@
 
 Este repositório contém uma aplicação Spring Boot que expõe uma REST API para operações CRUD de Produtos e Categorias, utilizando o DynamoDB para armazenamento e o SQS para comunicação assíncrona. Uma função Lambda em Python consome as mensagens da fila, gera um arquivo JSON estruturado e o salva em um bucket S3.
 
+
+![Arquitetura do projeto](arquitetura.png)
+
 ## Estrutura das Entidades
 
 **Produto**:
@@ -189,6 +192,3 @@ def lambda_handler(event, context):
 Sinta-se à vontade para abrir issues ou enviar pull requests!
 
 ---
-
-Agora o fluxo completo de reprocessamento da DLQ está integrado! Se precisar ajustar mais alguma coisa ou incrementar logs, é só avisar! 🚀✨
-
